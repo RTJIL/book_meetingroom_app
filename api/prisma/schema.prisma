@@ -6,10 +6,41 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  name     String
+  password String
+
+  role Role @default(User)
+
+  createdRooms Room[] @relation("AdminCreatedRooms")
+  bookedRooms  Room[] @relation("UserBookings")
+}
+
+model Room {
+  id    Int @id @default(autoincrement())
+  cost  Int
+  space Int
+
+  photo       String
+  location    String
+  description String
+
+  createdBy   User? @relation("AdminCreatedRooms", fields: [createdById], references: [id])
+  createdById Int?
+
+  users User[] @relation("UserBookings")
+}
+
+enum Role {
+  Admin
+  User
 }

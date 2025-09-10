@@ -6,9 +6,10 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev src/index.js",
-    "ts-node": "ts-node",
-    "start": "ts-node src/index.js",
+    "dev": "ts-node-dev src/index.ts",
+    "start": "ts-node src/index.ts",
+    "lint": "eslint .",
+    "tsc": "tsc",
     "migrate": "pnpm exec prisma migrate dev --name",
     "generate": "pnpm exec prisma generate",
     "studio": "pnpm exec prisma studio",
@@ -21,23 +22,34 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
+  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/RTJIL/express_api_template/issues"
   },
   "homepage": "https://github.com/RTJIL/express_api_template#readme",
   "dependencies": {
+    "@prisma/client": "6.13.0",
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
-    "morgan": "^1.10.1"
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.1",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "zod": "^4.1.5"
   },
   "devDependencies": {
+    "@eslint/js": "^9.35.0",
+    "@types/bcrypt": "^6.0.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/morgan": "^1.9.10",
     "@types/node": "^24.3.1",
+    "@types/passport": "^1.0.17",
+    "@types/passport-jwt": "^4.0.1",
     "eslint": "^9.32.0",
     "jest": "^30.0.5",
     "prettier": "^3.6.2",
@@ -45,6 +57,7 @@
     "supertest": "^7.1.4",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.43.0"
   }
 }
